@@ -94,13 +94,15 @@ def read_onlyUsefulinfo_from_original_txt(input_path):
 
 
 def main(_):
-    # TODO(user):Read bounding box information from txt file.
+    # TODO:if you want to create multiple tfrecord file.Comment this following line.
     train_writer = tf.python_io.TFRecordWriter(os.path.join(FLAGS.output_path,'train.record'))
-# comment this when you done this once
-#     read_onlyUsefulinfo_from_original_txt(input_path=FLAGS.input_path)
+    # comment this when you done this once
+    read_onlyUsefulinfo_from_original_txt(input_path=FLAGS.input_path)
     for file in os.listdir(FLAGS.output_path):
         if '_simple.txt' in file:
             prefix_num_in_txt = file.split('_simple')[0]
+            #TODO:Uncomment this if you want to create multiple tfrecord file.Comment this following line.
+            # train_writer = tf.python_io.TFRecordWriter(os.path.join(FLAGS.output_path, 'train_{}.record'.format(prefix_num_in_txt)))
             with open(os.path.join(FLAGS.output_path,file),'r') as reader:
                 for line in reader:
                     line=line.split(',')
@@ -111,6 +113,7 @@ def main(_):
                     y_min = int(line[-1])
                     x_max = int(line[-2])
                     y_max = int(line[-3])
+                    # TODO: This  should be modified according to your own naming pattern in the original dataset.
                     image_name = prefix_num_in_txt+'_'+frame_num+'.jpg'
                     image_path=os.path.join(FLAGS.input_path,image_name)
                     image=skimage.io.imread(image_path)
@@ -118,7 +121,8 @@ def main(_):
                     width=image.shape[1]
                     tf_example = create_tf_example(image_path,image_name,height,width,sign_type_num,x_min,y_min,x_max,y_max)
                     train_writer.write(tf_example.SerializeToString())
-
+            # TODO:Uncomment this if you want to create multiple tfrecord file.Comment this following line.
+            # train_writer.close()
     train_writer.close()
 
 
