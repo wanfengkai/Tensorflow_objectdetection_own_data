@@ -62,12 +62,19 @@ def create_tf_example(example):
 
 
 def read_onlyUsefulinfo_from_txt(input_path):
+    useful_informations_list=[]
+
     file_list = os.listdir(input_path)
     for file in file_list:
         if file.endswith('txt'):
             print(file)
             with open(os.path.join(input_path,file),'r+') as txt_file:
-                print(txt_file.readline())
+                head=txt_file.readline()
+                print(head)
+                useful_informations_list.append(zip(head[0],head[1],head[-4],head[-3],head[4],head[5]))
+                # useful item: frameNumber(0),signType(1),ulx(-4),uly(-3),lrx(4),lry(5)
+                print(useful_informations_list)
+
 
 
 def main(_):
