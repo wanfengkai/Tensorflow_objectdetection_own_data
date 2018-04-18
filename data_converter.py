@@ -68,12 +68,17 @@ def read_onlyUsefulinfo_from_txt(input_path):
     for file in file_list:
         if file.endswith('txt'):
             print(file)
-            with open(os.path.join(input_path,file),'r+') as txt_file:
-                head=txt_file.readline()
-                print(head)
-                useful_informations_list.append(zip(head[0],head[1],head[-4],head[-3],head[4],head[5]))
-                # useful item: frameNumber(0),signType(1),ulx(-4),uly(-3),lrx(4),lry(5)
-                print(useful_informations_list)
+            with open(os.path.join(FLAGS.output_path,file.split('.')[0]+'_simple.txt'),'w+') as new_txt:
+                with open(os.path.join(input_path,file),'r+') as txt_file:
+                    head=txt_file.readline()
+                    # head[0],head[1],head[-4],head[-3],head[4],head[5]
+                    # useful item: frameNumber(0),signType(1),ulx(-4),uly(-3),lrx(4),lry(5)
+                    print(head)
+                    for line in txt_file:
+                        new_txt.write('{},{},{},{},{},{}\n'.format(line[0],line[1],line[-4],line[-3],line[4],line[5]))
+
+
+
 
 
 
