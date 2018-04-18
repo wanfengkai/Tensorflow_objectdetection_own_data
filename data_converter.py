@@ -4,8 +4,8 @@ import os
 
 
 flags = tf.app.flags
-flags.DEFINE_string('output_path', '', 'Path to output TFRecord')
-flags.DEFINE_string('input_path', '', 'Path to input files including images and txt annotation files')
+flags.DEFINE_string('output_path', './tfrecord_folder', 'Path to output TFRecord')
+flags.DEFINE_string('input_path', './datademo', 'Path to input files including images and txt annotation files')
 FLAGS = flags.FLAGS
 
 
