@@ -1,0 +1,70 @@
+item {
+  id: 1
+  name: 'speed_limit'
+}
+
+item {
+  id: 2
+  name: 'goods_vehicles'
+}
+
+item {
+  id: 3
+  name: 'no_overtaking'
+}
+
+
+item {
+  id: 4
+  name: 'no_stopping'
+}
+
+item {
+  id: 5
+  name: 'no_parking'
+}
+
+item {
+  id: 6
+  name: 'stop'
+}
+
+item {
+  id: 7
+  name: 'bicycle'
+}
+
+item {
+  id: 8
+  name: 'hump'
+}
+
+item {
+  id: 9
+  name: 'no_left'
+}
+
+item {
+  id: 10
+  name: 'no_right'
+}
+
+item {
+  id: 11
+  name: 'priority_to'
+}
+
+item {
+  id: 12
+  name: 'no_entry'
+}
+
+item {
+  id: 13
+  name: 'yield'
+}
+
+item {
+  id: 14
+  name: 'parking'
+}
