@@ -10,7 +10,8 @@ flags.DEFINE_string('output_path', './tfrecord_folder', 'Path to output TFRecord
 flags.DEFINE_string('input_path', './datademo', 'Path to input files including images and txt annotation files')
 FLAGS = flags.FLAGS
 
-RATIO_of_resized_image=2
+ORIGINAL_WIDTH=1628
+ORIGINAL_HEIGHT=1236
 mydict={"speed_limit" : 1,
       "goods_vehicles": 2,
       "no_overtaking": 3,
@@ -43,11 +44,11 @@ def create_tf_example(image_path,image_name,height,width,sign_type_num,x_min,y_m
     encoded_image_data =image_data = tf.gfile.FastGFile(image_path, 'rb').read()
     image_format = b'jpeg' # b'jpeg' or b'png'
 
-    xmins = [x_min/width/RATIO_of_resized_image] # List of normalized left x coordinates in bounding box (1 per box)
-    xmaxs = [x_max/width/RATIO_of_resized_image]# List of normalized right x coordinates in bounding box
+    xmins = [x_min/ORIGINAL_WIDTH] # List of normalized left x coordinates in bounding box (1 per box)
+    xmaxs = [x_max/ORIGINAL_WIDTH]# List of normalized right x coordinates in bounding box
              # (1 per box)
-    ymins = [y_min/height/RATIO_of_resized_image] # List of normalized top y coordinates in bounding box (1 per box)
-    ymaxs = [y_max/height/RATIO_of_resized_image] # List of normalized bottom y coordinates in bounding box
+    ymins = [y_min/ORIGINAL_HEIGHT] # List of normalized top y coordinates in bounding box (1 per box)
+    ymaxs = [y_max/ORIGINAL_HEIGHT] # List of normalized bottom y coordinates in bounding box
              # (1 per box)
     classes = [sign_type_num] # List of integer class id of bounding box (1 per box)
     classes_text =list(mydict.keys())[list(mydict.values()).index(sign_type_num)]
