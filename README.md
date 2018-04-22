@@ -94,6 +94,7 @@ This is the key part, you should create ```tfrecord``` file with your dataset:
 ## Train or eval your model 
 
 * Firstly change your current working directory  ```tensorflow/models/research/``` then:
+
 			# From tensorflow/models/research/
 			export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 * Claim some global variables beforehand: 
